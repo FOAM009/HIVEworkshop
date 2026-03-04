@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import 'order_success_screen.dart';
 
-// ── TODO STEP 4: import Hive ────────────────────────────────
+// ── TODO STEP 5: Import Hive ────────────────────────────────
 // import 'package:hive_flutter/hive_flutter.dart';
 // import '../models/cart_item.dart';
 // import '../models/order.dart';
@@ -75,7 +75,7 @@ class CartScreen extends StatelessWidget {
           Expanded(
             child: Consumer<CartProvider>(
               builder: (context, cart, _) {
-                // TODO STEP 4: Change to use ValueListenableBuilder instead of Consumer
+                // TODO STEP 5: Change to use ValueListenableBuilder instead of Consumer
                 // ValueListenableBuilder(
                 //   valueListenable: Hive.box<CartItem>('cart').listenable(),
                 //   builder: (context, Box<CartItem> box, _) {
@@ -358,6 +358,21 @@ class _TotalPanel extends StatelessWidget {
                       'itemCount': itemCount,
                       'itemNames': cartProvider.items.map((item) => item.name).toList(),
                     };
+
+                    // ── 📦 STEP 8: Save Order to Hive ────────────────────────────
+                    // After completing STEPs 1-7:
+                    // final ordersBox = Hive.box<Order>('orders');
+                    // final cartBox = Hive.box<CartItem>('cart');
+                    //
+                    // final order = Order(
+                    //   id: orderData['id'] as String,
+                    //   date: orderData['date'] as DateTime,
+                    //   total: orderData['total'] as double,
+                    //   itemCount: orderData['itemCount'] as int,
+                    //   itemNames: orderData['itemNames'] as List<String>,
+                    // );
+                    // ordersBox.add(order);  // Save to Hive
+                    // cartBox.clear();       // Clear cart after saving
 
                     // Navigate to success screen (works without Hive)
                     Navigator.push(

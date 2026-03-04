@@ -7,20 +7,27 @@ import 'screens/main_screen.dart';
 // import 'package:hive_flutter/hive_flutter.dart';
 // import 'models/cart_item.dart';
 
-// ── BONUS: Uncomment after completing STEPs 1-5 ─────────────────────
-// import 'models/order.dart';  // For order history feature
+// ── 📦 STEP 7: Uncomment after completing STEPs 1-6 ───────────────
+// This enables the Orders box for order history persistence
+// import 'models/order.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ── TODO STEP 3: Add Hive init here ─────────────────────────────
+  // Initialize Hive and register CartItem adapter (STEP 3)
   // await Hive.initFlutter();
   // Hive.registerAdapter(CartItemAdapter());
   // await Hive.openBox<CartItem>('cart');
 
-  // ── BONUS: Uncomment after completing STEPs 1-5 ────────────────────
+  // ── 📦 STEP 7: Initialize Orders Box ─────────────────────────────
+  // After enabling order.dart and running build_runner:
   // Hive.registerAdapter(OrderAdapter());
   // await Hive.openBox<Order>('orders');
+  //
+  // 🎯 This creates a SECOND box for order history
+  //    - 'cart' box: Current items (cleared after checkout)
+  //    - 'orders' box: Past orders (persists forever)
 
   runApp(
     ChangeNotifierProvider(

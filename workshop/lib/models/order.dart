@@ -1,20 +1,24 @@
-// ── BONUS: Order Model ────────────────────────────────────────────────
-// This file is prepared for the BONUS section (after completing STEPs 1-5)
+// ── Order Model ─────────────────────────────────────────────────────────
+// 📦 STEP 6: Create Order Model (Order History Persistence)
 //
-// DO NOT UNCOMMENT until after:
+// 🔰 PREREQUISITES (Complete Steps 1-5 First):
 // ✅ STEP 1: Hive dependencies added (pubspec.yaml)
 // ✅ STEP 2: CartItem model created & adapter generated
 // ✅ STEP 3: Hive initialized in main.dart
 // ✅ STEP 4: CartProvider updated to use Hive
 // ✅ STEP 5: CartScreen UI updated with ValueListenableBuilder
 //
-// Then to enable the BONUS feature:
-// 1. Uncomment this entire file (remove /* */)
-// 2. Uncomment import in main.dart
-// 3. Uncomment the orders box initialization in main.dart
-// 4. Run: dart run build_runner build
-// 5. Uncomment checkout logic in cart_screen.dart to save orders
-// 6. Uncomment order_history_screen.dart implementation
+// ────────────────────────────────────────────────────────────────────────────
+// 📝 STEP 6: Create Order Model
+// ────────────────────────────────────────────────────────────────────────────
+// To enable Order History:
+// 1. Uncomment this entire file (remove /* */ at the bottom)
+// 2. Run: dart run build_runner build
+// 3. Continue to STEP 7 (main.dart)
+//
+// 🎯 This creates a SECOND Hive box for storing order history
+//    - 'cart' box: Current items (cleared after checkout)
+//    - 'orders' box: Past orders (persists forever)
 
 /*
 import 'package:hive/hive.dart';

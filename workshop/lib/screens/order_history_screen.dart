@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ── Order History Screen ────────────────────────────────────────────────
 // Demo mode: Shows orders from memory (lost on restart)
 //
-// After adding Hive: Will display actual orders from Hive box
+// 📦 STEP 8: After adding Hive, will display actual orders from Hive box
 
 class OrderHistoryScreen extends StatelessWidget {
   final List<Map<String, dynamic>> demoOrders;
@@ -12,13 +12,32 @@ class OrderHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO BONUS: After adding Hive, replace with ValueListenableBuilder
+    // ── 📦 STEP 8: Display Orders from Hive ────────────────────────────
+    // After completing STEPs 1-7, replace the body below with:
+    //
     // ValueListenableBuilder(
     //   valueListenable: Hive.box<Order>('orders').listenable(),
     //   builder: (context, Box<Order> box, _) {
     //     final orders = box.values.toList()
-    //       ..sort((a, b) => b.date.compareTo(a.date));
-    //     ...
+    //       ..sort((a, b) => b.date.compareTo(a.date)); // Newest first
+    //
+    //     if (orders.isEmpty) {
+    //       return Center(child: Text('No orders yet'));
+    //     }
+    //
+    //     return ListView.builder(
+    //       itemCount: orders.length,
+    //       itemBuilder: (context, i) {
+    //         final order = orders[i];
+    //         return _OrderCard(
+    //           id: order.id,
+    //           date: order.date,
+    //           total: order.total,
+    //           itemCount: order.itemCount,
+    //           itemNames: order.itemNames,
+    //         );
+    //       },
+    //     );
     //   },
     // )
 
