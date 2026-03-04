@@ -6,54 +6,16 @@ import 'package:flutter/material.dart';
 // ── Order History Screen ────────────────────────────────────────────────
 // ⚠️ CURRENT: Demo mode - orders lost on restart
 // ✅ STEP 8: Read from Hive - orders persist forever
-//
-// See PPTX_SLIDES.md "STEP 8 (Part 2): Display Order History"
 
 class OrderHistoryScreen extends StatelessWidget {
-  // ❌ TODO STEP 8: Remove demoOrders parameter
+  // TODO STEP 8: Remove demoOrders - replace constructor with:
+  // const OrderHistoryScreen({super.key});
   final List<Map<String, dynamic>> demoOrders;
 
   const OrderHistoryScreen({super.key, this.demoOrders = const []});
 
   @override
   Widget build(BuildContext context) {
-    // ── 📦 STEP 8: Display Orders from Hive ────────────────────────────────
-    // 1. Uncomment imports at top of file
-    // 2. Remove demoOrders parameter (line 14)
-    // 3. Replace body with ValueListenableBuilder (see PPTX_SLIDES.md)
-    //
-    // ValueListenableBuilder(
-    //   valueListenable: Hive.box<Order>('orders').listenable(),
-    //   builder: (context, Box<Order> box, _) {
-    //     final orders = box.values.toList()
-    //       ..sort((a, b) => b.date.compareTo(a.date));
-    //
-    //     if (orders.isEmpty) {
-    //       return const Center(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Icon(Icons.receipt_long_outlined, size: 64, color: Colors.grey),
-    //             SizedBox(height: 16),
-    //             Text('No orders yet', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-    //             SizedBox(height: 8),
-    //             Text('Complete your first order to see it here'),
-    //           ],
-    //         ),
-    //       );
-    //     }
-    //
-    //     return ListView.builder(
-    //       padding: const EdgeInsets.all(16),
-    //       itemCount: orders.length,
-    //       itemBuilder: (context, i) {
-    //         final order = orders[i];
-    //         return _OrderCard(...);
-    //       },
-    //     );
-    //   },
-    // );
-
     return Scaffold(
       backgroundColor: const Color(0xFFF7FAF7),
       appBar: AppBar(
@@ -63,8 +25,8 @@ class OrderHistoryScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
+        // TODO STEP 8: Remove entire actions[] section (demo indicator)
         actions: [
-          // Demo indicator
           if (demoOrders.isNotEmpty)
             Container(
               margin: const EdgeInsets.only(right: 12),
@@ -83,6 +45,46 @@ class OrderHistoryScreen extends StatelessWidget {
             ),
         ],
       ),
+      // TODO STEP 8: Replace body with ValueListenableBuilder
+      // Uncomment this block and remove the old body below:
+      //
+      // body: ValueListenableBuilder(
+      //   valueListenable: Hive.box<Order>('orders').listenable(),
+      //   builder: (context, Box<Order> box, _) {
+      //     final orders = box.values.toList()
+      //       ..sort((a, b) => b.date.compareTo(a.date));
+      //
+      //     if (orders.isEmpty) {
+      //       return const Center(
+      //         child: Column(
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           children: [
+      //             Icon(Icons.receipt_long_outlined, size: 64, color: Colors.grey),
+      //             SizedBox(height: 16),
+      //             Text('No orders yet', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      //             SizedBox(height: 8),
+      //             Text('Complete your first order to see it here'),
+      //           ],
+      //         ),
+      //       );
+      //     }
+      //
+      //     return ListView.builder(
+      //       padding: const EdgeInsets.all(16),
+      //       itemCount: orders.length,
+      //       itemBuilder: (context, i) {
+      //         final order = orders[i];
+      //         return _OrderCard(
+      //           id: order.id,
+      //           date: order.date,
+      //           total: order.total,
+      //           itemCount: order.itemCount,
+      //           itemNames: order.itemNames,
+      //         );
+      //       },
+      //     );
+      //   },
+      // );
       body: demoOrders.isEmpty
           ? const Center(
               child: Column(

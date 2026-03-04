@@ -18,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
   // TODO STEP 8: Remove demoOrders list and addDemoOrder method
+  // ── Delete this entire section ─────────────────────────────────────────────
   final List<Map<String, dynamic>> _demoOrders = [];
 
   void addDemoOrder(Map<String, dynamic> order) {
@@ -25,6 +26,7 @@ class _MainScreenState extends State<MainScreen> {
       _demoOrders.insert(0, order); // Add to beginning (newest first)
     });
   }
+  // ───────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
