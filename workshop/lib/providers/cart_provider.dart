@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-// ── Item data stored in memory ──────────────────────────────────────
-// ⚠️  Currently using List → data lost on restart!
-// TODO STEP 4: Change to use Hive box instead of List
+// 📦 STEP 4: Replace List with Hive Box → See PPTX_SLIDES.md
 
 class CartItemData {
   final String name;
@@ -17,14 +15,19 @@ class CartItemData {
 }
 
 class CartProvider extends ChangeNotifier {
-  // ⚠️  Regular List — data lost every restart!
+  // TODO STEP 4: Change to: late final Box<CartItem> _box;
   final List<CartItemData> _items = [];
 
+  // TODO STEP 4: Add constructor:
+  // CartProvider() { _box = Hive.box<CartItem>('cart'); }
+
+  // TODO STEP 4: Change to: List<CartItem> get items => _box.values.toList();
   List<CartItemData> get items => List.unmodifiable(_items);
 
   double get total =>
       _items.fold(0, (sum, item) => sum + item.price * item.quantity);
 
+  // TODO STEP 4: Use firstWhere + orElse + .save()
   void addItem(String name, double price) {
     final existing = _items.where((i) => i.name == name).firstOrNull;
     if (existing != null) {
@@ -35,11 +38,13 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // TODO STEP 4: Use getAt(index) + .save()
   void increment(int index) {
     _items[index].quantity++;
     notifyListeners();
   }
 
+  // TODO STEP 4: Use getAt(index) + .save() or .delete()
   void decrement(int index) {
     if (_items[index].quantity > 1) {
       _items[index].quantity--;
@@ -49,13 +54,13 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // TODO STEP 4: Change to: _box.deleteAt(index);
   void removeAt(int index) {
     _items.removeAt(index);
     notifyListeners();
   }
 
-  // ── BONUS: Clear cart after checkout ────────────────────────
-  // This will be used after order is saved to Hive
+  // TODO STEP 4: Change to: _box.clear();
   void clearCart() {
     _items.clear();
     notifyListeners();
