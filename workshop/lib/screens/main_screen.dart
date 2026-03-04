@@ -5,10 +5,7 @@ import 'cart_screen.dart';
 import 'order_history_screen.dart';
 
 // ── Main Screen with Bottom Navigation ───────────────────────────────
-// Home = Cart, History = Order History
-//
-// Demo mode: Orders stored in memory only (lost on restart)
-// After adding Hive: Orders will be persisted
+// Cart = Current items, History = Past orders
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,8 +17,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  // ── Demo mode: In-memory order list (lost on restart) ─────────────
-  // TODO BONUS: Remove this after adding Hive - will use Hive.box instead
+  // TODO STEP 8: Remove demoOrders list and addDemoOrder method
   final List<Map<String, dynamic>> _demoOrders = [];
 
   void addDemoOrder(Map<String, dynamic> order) {
@@ -38,14 +34,14 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           CartScreen(
             onOrderComplete: (order) {
-              // Add to demo orders (in-memory)
+              // TODO STEP 8: Remove addDemoOrder() call - order already saved to Hive
               addDemoOrder(order);
-              // Switch to history tab
               setState(() {
                 _currentIndex = 1;
               });
             },
           ),
+          // TODO STEP 8: Change to: const OrderHistoryScreen()
           OrderHistoryScreen(
             demoOrders: _demoOrders,
           ),

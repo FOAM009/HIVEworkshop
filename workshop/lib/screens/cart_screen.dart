@@ -81,6 +81,26 @@ class CartScreen extends StatelessWidget {
                 //   builder: (context, Box<CartItem> box, _) {
                 //     final items = box.values.toList();
 
+                //     return ListView.builder(
+                //       itemCount: items.length,
+                //       itemBuilder: (context, i) {
+                //         final item = items[i];
+                //         return _CartItemCard(
+                //           name: item.name,
+                //           price: item.price,
+                //           quantity: item.quantity,
+                //           onIncrement: () =>
+                //               context.read<CartProvider>().increment(i),
+                //           onDecrement: () =>
+                //               context.read<CartProvider>().decrement(i),
+                //           onDelete: () =>
+                //               context.read<CartProvider>().removeAt(i),
+                //         );
+                //       },
+                //     );
+                //   },
+                // );
+
                 if (cart.items.isEmpty) {
                   return const Center(
                     child: Column(
@@ -356,7 +376,8 @@ class _TotalPanel extends StatelessWidget {
                       'date': DateTime.now(),
                       'total': total,
                       'itemCount': itemCount,
-                      'itemNames': cartProvider.items.map((item) => item.name).toList(),
+                      'itemNames':
+                          cartProvider.items.map((item) => item.name).toList(),
                     };
 
                     // ── 📦 STEP 8: Save Order to Hive ────────────────────────────

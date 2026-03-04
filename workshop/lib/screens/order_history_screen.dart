@@ -1,45 +1,58 @@
 import 'package:flutter/material.dart';
+// ── 📦 STEP 8: Import Hive ────────────────────────────────────────
+// import 'package:hive_flutter/hive_flutter.dart';
+// import '../models/order.dart';
 
 // ── Order History Screen ────────────────────────────────────────────────
-// Demo mode: Shows orders from memory (lost on restart)
+// ⚠️ CURRENT: Demo mode - orders lost on restart
+// ✅ STEP 8: Read from Hive - orders persist forever
 //
-// 📦 STEP 8: After adding Hive, will display actual orders from Hive box
+// See PPTX_SLIDES.md "STEP 8 (Part 2): Display Order History"
 
 class OrderHistoryScreen extends StatelessWidget {
+  // ❌ TODO STEP 8: Remove demoOrders parameter
   final List<Map<String, dynamic>> demoOrders;
 
   const OrderHistoryScreen({super.key, this.demoOrders = const []});
 
   @override
   Widget build(BuildContext context) {
-    // ── 📦 STEP 8: Display Orders from Hive ────────────────────────────
-    // After completing STEPs 1-7, replace the body below with:
+    // ── 📦 STEP 8: Display Orders from Hive ────────────────────────────────
+    // 1. Uncomment imports at top of file
+    // 2. Remove demoOrders parameter (line 14)
+    // 3. Replace body with ValueListenableBuilder (see PPTX_SLIDES.md)
     //
     // ValueListenableBuilder(
     //   valueListenable: Hive.box<Order>('orders').listenable(),
     //   builder: (context, Box<Order> box, _) {
     //     final orders = box.values.toList()
-    //       ..sort((a, b) => b.date.compareTo(a.date)); // Newest first
+    //       ..sort((a, b) => b.date.compareTo(a.date));
     //
     //     if (orders.isEmpty) {
-    //       return Center(child: Text('No orders yet'));
+    //       return const Center(
+    //         child: Column(
+    //           mainAxisAlignment: MainAxisAlignment.center,
+    //           children: [
+    //             Icon(Icons.receipt_long_outlined, size: 64, color: Colors.grey),
+    //             SizedBox(height: 16),
+    //             Text('No orders yet', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+    //             SizedBox(height: 8),
+    //             Text('Complete your first order to see it here'),
+    //           ],
+    //         ),
+    //       );
     //     }
     //
     //     return ListView.builder(
+    //       padding: const EdgeInsets.all(16),
     //       itemCount: orders.length,
     //       itemBuilder: (context, i) {
     //         final order = orders[i];
-    //         return _OrderCard(
-    //           id: order.id,
-    //           date: order.date,
-    //           total: order.total,
-    //           itemCount: order.itemCount,
-    //           itemNames: order.itemNames,
-    //         );
+    //         return _OrderCard(...);
     //       },
     //     );
     //   },
-    // )
+    // );
 
     return Scaffold(
       backgroundColor: const Color(0xFFF7FAF7),
@@ -75,7 +88,8 @@ class OrderHistoryScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.receipt_long_outlined, size: 64, color: Colors.grey),
+                  Icon(Icons.receipt_long_outlined,
+                      size: 64, color: Colors.grey),
                   SizedBox(height: 16),
                   Text(
                     'No orders yet',
@@ -202,7 +216,8 @@ class _OrderCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8, bottom: 4),
                     child: Row(
                       children: [
-                        Icon(Icons.circle, size: 4, color: Colors.grey.shade400),
+                        Icon(Icons.circle,
+                            size: 4, color: Colors.grey.shade400),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
